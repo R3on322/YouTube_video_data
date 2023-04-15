@@ -11,4 +11,3 @@ async_session: async_sessionmaker = async_sessionmaker(engine, expire_on_commit=
 
 class Base(DeclarativeBase):
     pass
-

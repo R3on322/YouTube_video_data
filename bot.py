@@ -16,7 +16,7 @@ from states.states import FSMFillInfo
 from utils.callback import video_callback
 from utils.callbackdata import VideoInfo
 from filters.youtube_filter import IsYouTubeUrl
-from filters.video_list_del import IsDeleteVideo
+from filters.delete_video_url_filter import DeleteVideoUrl
 
 
 logger = logging.getLogger(__name__)
@@ -55,7 +55,7 @@ async def main():
     # редактируем list_video
     dp.callback_query.register(process_edit_video_list, Text(text='edit_video_list'))
     # удаляем видео из list_video
-    dp.callback_query.register(process_delete_video_press, IsDeleteVideo())
+    dp.callback_query.register(process_delete_video_press, DeleteVideoUrl())
     # прерываем редактор list_video
     dp.callback_query.register(process_cancel_redact_press, Text(text='cancel_redact'))
     # создаем callback после команды list_video

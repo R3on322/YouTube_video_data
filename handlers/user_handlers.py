@@ -2,7 +2,7 @@ from aiogram.types import Message, CallbackQuery
 
 
 from lexicon.lexicon_ru import LEXICON_RU
-from database.db_crud import get_list_video
+from database.db_crud import get_list_video, delete_video
 from keyboards.favourite_list_inline_kb import create_video_list_kb, create_edit_list_kb
 
 
@@ -32,7 +32,14 @@ async def process_edit_video_list(callback: CallbackQuery):
 
 
 async def process_delete_video_press(callback: CallbackQuery):
-    await callback.answer(text='Удалили ссылку')
+    new_video_list = await delete_video(callback)
+    if new_video_list:
+        await callback.message.edit_text(
+            text=LEXICON_RU['/list_video'],
+            reply_markup=create_edit_list_kb(new_video_list))
+    else:
+        await callback.message.edit_text(text=LEXICON_RU['no_video_in_list'])
+        await callback.answer()
 
 
 async def process_cancel_redact_press(callback: CallbackQuery):

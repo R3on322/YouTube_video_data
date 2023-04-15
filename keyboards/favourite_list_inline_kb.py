@@ -9,9 +9,9 @@ from lexicon.lexicon_ru import LEXICON_RU
 
 def create_video_list_kb(args: List) -> InlineKeyboardMarkup:
     keyboard_build: InlineKeyboardBuilder = InlineKeyboardBuilder()
-    for video_name, url in args:
+    for video_id, video_name, url in args:
         keyboard_build.button(text=video_name,
-                              callback_data=VideoInfo(url=url))
+                              callback_data=VideoInfo(id=video_id, url=url))
 
     keyboard_build.adjust(1)
     keyboard_build.row(
@@ -28,9 +28,9 @@ def create_video_list_kb(args: List) -> InlineKeyboardMarkup:
 
 def create_edit_list_kb(args: List) -> InlineKeyboardMarkup:
     keyboard_build: InlineKeyboardBuilder = InlineKeyboardBuilder()
-    for video_name, url in args:
+    for video_id, video_name, url in args:
         keyboard_build.button(text=f'{LEXICON_RU["del"]} {video_name}',
-                              callback_data=f'{url}delete')
+                              callback_data=f'{video_id} {LEXICON_RU["del"]}')
 
     keyboard_build.row(InlineKeyboardButton(
         text=LEXICON_RU['cancel_button'],
