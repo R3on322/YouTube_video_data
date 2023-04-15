@@ -11,7 +11,7 @@ from keyboards.set_menu import set_commands_menu
 import handlers.fsm_handlers
 from handlers.user_handlers import process_start_command, process_help_command, process_video_list_command, \
     send_echo, not_correct_url, process_edit_video_list, process_cancel_redact_press, process_delete_video_press
-from middlewares.db_authorization_chek import IsAuthorizedDB
+from middlewares.authorization_chek import IsAuthorizedDB
 from states.states import FSMFillInfo
 from utils.callback import video_callback
 from utils.callbackdata import VideoInfo

@@ -3,7 +3,7 @@ from aiogram.fsm.context import FSMContext
 
 from lexicon.lexicon_ru import LEXICON_RU
 from states.states import FSMFillInfo
-from database.database import add_video_url
+from database.db_crud import add_video_url
 from services.services import get_data_from_youtube
 
 

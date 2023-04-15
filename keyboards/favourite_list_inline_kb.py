@@ -1,13 +1,13 @@
 from typing import List
 
 from aiogram.utils.keyboard import InlineKeyboardBuilder
-from aiogram.types import InlineKeyboardButton
+from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 from utils.callbackdata import VideoInfo
 from lexicon.lexicon_ru import LEXICON_RU
 
 
-def create_video_list_kb(args: List):
+def create_video_list_kb(args: List) -> InlineKeyboardMarkup:
     keyboard_build: InlineKeyboardBuilder = InlineKeyboardBuilder()
     for video_name, url in args:
         keyboard_build.button(text=video_name,
@@ -26,7 +26,7 @@ def create_video_list_kb(args: List):
     return keyboard_build.as_markup()
 
 
-def create_edit_list_kb(args):
+def create_edit_list_kb(args: List) -> InlineKeyboardMarkup:
     keyboard_build: InlineKeyboardBuilder = InlineKeyboardBuilder()
     for video_name, url in args:
         keyboard_build.button(text=f'{LEXICON_RU["del"]} {video_name}',
