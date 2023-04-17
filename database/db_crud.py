@@ -3,8 +3,14 @@ from typing import Any
 from aiogram.types import CallbackQuery, Message
 
 from .db_models import UserVideoInfo, User
-from .db_settings import async_session
-from sqlalchemy import select, update, delete
+from .db_settings import async_session, engine, Base
+from sqlalchemy import select, delete
+
+
+async def start_db():
+    async with engine.begin() as conn:
+        await conn.run_sync(Base.metadata.create_all)
+
 
 
 async def create_user(message: Message) -> None:

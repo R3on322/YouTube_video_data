@@ -1,23 +1,24 @@
-import requests
-import os, time
+import time
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 
 
-
 def get_data_from_youtube(url: str) -> dict:
     options = webdriver.ChromeOptions()
     options.page_load_strategy = 'eager'
     options.add_argument('--headless=new')
-    service = Service(executable_path='D:\\Python\\Projects\\bots\\youtube_info\\services\\yandexdriver.exe')
+    service = Service(
+        # executable_path='YOUR PATH TO yandexdriver.exe',
+        executable_path='C:\\Users\\Vikoffka\\PycharmProjects\\YouTube_video_data\\services\\yandexdriver.exe'
+    )
     driver = webdriver.Chrome(service=service,
                               options=options)
     driver.get(url)
     time.sleep(3)
     print('Загружаем страницу YouTube')
-    more_button = driver.find_element(By.XPATH, '//*[@id="expand"]').click()
+    driver.find_element(By.XPATH, '//*[@id="expand"]').click()
     data = driver.page_source
     print('Парсим страницу')
     soup = BeautifulSoup(data, 'lxml')
@@ -29,7 +30,6 @@ def get_data_from_youtube(url: str) -> dict:
                                                 "yt-spec-button-shape-next--mono yt-spec-button-shape-next--size-m "
                                                 "yt-spec-button-shape-next--icon-leading "
                                                 "yt-spec-button-shape-next--segmented-start"}).text
-
 
     return {'video_name': name,
             'views': count_views.text,

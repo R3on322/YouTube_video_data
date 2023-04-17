@@ -16,10 +16,11 @@ async def process_help_command(message: Message):
 
 async def process_video_list_command(message: Message):
     video_list = await get_list_video(message.from_user.id)
+    print(video_list)
     if not video_list:
         await message.answer(text=LEXICON_RU['no_video_in_list'])
         return
-    await message.answer(text=f'{LEXICON_RU[message.text]}',
+    await message.answer(text='<b>Список добавленных видео: </b>',
                          reply_markup=create_video_list_kb(video_list))
 
 

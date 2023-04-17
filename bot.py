@@ -3,9 +3,10 @@ import logging
 
 from aiogram import Bot, Dispatcher
 from aiogram.fsm.storage.memory import MemoryStorage
-from aiogram.filters import Command, CommandStart, Text
+from aiogram.filters import Command, CommandStart, Text, or_f
 
 from config_data.config import Config, load_config
+from database.db_crud import start_db
 from database.db_settings import async_session
 from keyboards.set_menu import set_commands_menu
 import handlers.fsm_handlers
@@ -17,7 +18,6 @@ from utils.callback import video_callback
 from utils.callbackdata import VideoInfo
 from filters.youtube_filter import IsYouTubeUrl
 from filters.delete_video_url_filter import DeleteVideoUrl
-
 
 logger = logging.getLogger(__name__)
 
@@ -42,7 +42,10 @@ async def main():
     bot: Bot = Bot(token=config.tg_bot.token, parse_mode='HTML')
     dp: Dispatcher = Dispatcher(storage=storage)
 
+    #  устанавливаем меню команд бота
     await set_commands_menu(bot)
+    #  создаем таблицы, если их нет
+    await start_db()
 
     dp.startup.register(start_bot)
     dp.shutdown.register(stop_bot)

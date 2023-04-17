@@ -22,8 +22,11 @@ pip install -r requirements.txt
 ```
 
 ### Запуск проекта:
-- Создать базу данных(автоматизация этого процесса в работе)
-- Создать файл .env и внести свои данные.(env.example - образец файла .env)
+- В папке services указать свой полный путь до файла yandexdriver.exe, из этого проекта.
+(Например: C:\\...\\YouTube_video_data\\services\\yandexdriver.exe)
+- Создать файл docker-compose.yaml на основе docker_compose.example.yaml
+- Создать файл .env на основе .env.example
+- Запустить БД через docker_compose(docker-compose up -d в терминале)
 - Запуск приложения через bot.py
 
 ### Обновить pip до последней версии:

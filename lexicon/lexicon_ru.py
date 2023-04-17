@@ -1,7 +1,8 @@
 LEXICON_RU: dict[str, str] = {'del': '❌',
                               'edit_button': '❌ РЕДАКТИРОВАТЬ',
                               'edit_video_list': '<b>Редактировать список видео</b>',
-                              'cancel_button': 'ВЫЙТИ',
+                              'back_button': 'Назад',
+                              'cancel_button': 'Выйти',
                               'cancel_redact_text': 'Вы вышли из списка видео',
                               'cancel_video_add': 'Вы прекратили добавление видео\n\n'
                                                   'Чтобы снова перейти к добавлению видео - '

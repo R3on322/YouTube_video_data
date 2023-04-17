@@ -31,9 +31,16 @@ def create_edit_list_kb(args: List) -> InlineKeyboardMarkup:
     for video_id, video_name, url in args:
         keyboard_build.button(text=f'{LEXICON_RU["del"]} {video_name}',
                               callback_data=f'{video_id} {LEXICON_RU["del"]}')
-
-    keyboard_build.row(InlineKeyboardButton(
-        text=LEXICON_RU['cancel_button'],
-        callback_data='cancel_redact'))
     keyboard_build.adjust(1)
+    keyboard_build.row(
+        InlineKeyboardButton(
+            text=LEXICON_RU['back_button'],
+            callback_data='/list_video'  # доделать кнопку
+        ),
+        InlineKeyboardButton(
+            text=LEXICON_RU['cancel_button'],
+            callback_data='cancel_redact'
+        ),
+        width=2
+    )
     return keyboard_build.as_markup()

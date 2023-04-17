@@ -1,0 +1,10 @@
+services:
+  postgres_db:
+    container_name: pg_db
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_PASSWORD=db password
+      - POSTGRES_USER=db username
+      - POSTGRES_DB=db name
+    image: postgres:15.2-alpine3.17
